@@ -15,7 +15,7 @@ public class Customer  implements Serializable {
     private String notes;
     private String name;
 
-    @OneToMany(targetEntity = Pet.class)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Pet> pets;
 
     public void insertPet(Pet pet){

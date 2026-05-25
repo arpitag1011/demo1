@@ -47,7 +47,7 @@ public class ScheduleService {
 
     public List<Schedule> getAllSchedulesForEmployee(Long employeeId){
         Employee employee = employeeRepository.getOne(employeeId);
-        return scheduleRepository.getAllByEmployeeContains(employee);
+        return scheduleRepository.getAllByEmployeesContains(employee);
     }
 
     public List<Schedule> getAllSchedulesForCustomer(Long customerId){
