@@ -33,7 +33,9 @@ public class ScheduleService {
         List<Pet> pets = petRepository.findAllById(petIds);
         schedule.setEmployees(employees);
         schedule.setPets(pets);
-        return scheduleRepository.save(schedule);
+        Schedule savedSchedule = scheduleRepository.save(schedule);
+        for (Pet pet : pets) {}
+        return savedSchedule;
     }
 
     public List<Schedule> getAllSchedules(){
