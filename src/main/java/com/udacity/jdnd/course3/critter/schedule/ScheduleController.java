@@ -33,7 +33,7 @@ public class ScheduleController {
         Schedule schedule = new Schedule();
         schedule.setActivities(scheduleDTO.getActivities());
         schedule.setDate(scheduleDTO.getDate());
-        return getScheduleDTO(scheduleService.saveSchedule(schedule,scheduleDTO.getEmployeeIds(),scheduleDTO.getPetIds()));
+        return getScheduleDTO(scheduleService.saveSchedule(schedule, scheduleDTO.getPetIds(), scheduleDTO.getEmployeeIds()));
     }
 
     @GetMapping

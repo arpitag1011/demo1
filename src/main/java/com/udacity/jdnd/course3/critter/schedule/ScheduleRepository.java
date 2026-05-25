@@ -12,7 +12,7 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     @Query("SELECT s FROM Schedule s JOIN s.pets p WHERE p = :pet")
     List<Schedule> getAllByPetsContains(@Param("pet") Pet pet);
 
-    @Query("SELECT s FROM Schedule s JOIN s.employees e WHERE e = :employees")
+    @Query("SELECT s FROM Schedule s JOIN s.employees e WHERE e = :employee")
     List<Schedule> getAllByEmployeesContains(@Param("employee") Employee employee);
 
     List<Schedule> getAllByPetsIn(List<Pet> pets);
