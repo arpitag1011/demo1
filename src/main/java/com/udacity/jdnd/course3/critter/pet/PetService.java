@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,12 +20,18 @@ public class PetService {
     private CustomerRepository customerRepository;
 
     public Pet savePet(Pet pet, Long ownerId){
-        Customer customer = customerRepository.getOne(ownerId);
-        pet.setCustomer(customer);
-        pet=petRepository.save(pet);
-        customer.insertPet(pet);
-        customerRepository.save(customer);
-        return pet;
+        Pet savedPet = petRepository.save(pet);
+        Customer owner = savedPet.getCustomer();
+        if (owner != null) {
+            if (owner.getPets() == null){
+                owner.setPets(new ArrayList<>());
+            }
+            if (!owner.getPets().contains(savedPet)){
+                owner.getPets().add(savedPet);
+            }
+            customerRepository.save(owner);
+        }
+        return savedPet;
     }
 
     public Pet getPetById(Long id){
