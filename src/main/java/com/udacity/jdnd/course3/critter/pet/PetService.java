@@ -20,7 +20,12 @@ public class PetService {
     private CustomerRepository customerRepository;
 
     public Pet savePet(Pet pet, Long ownerId){
+        if (ownerId != null) {
+            Customer owner = customerRepository.getOne(ownerId);
+            pet.setCustomer(owner);
+        }
         Pet savedPet = petRepository.save(pet);
+
         Customer owner = savedPet.getCustomer();
         if (owner != null) {
             if (owner.getPets() == null){

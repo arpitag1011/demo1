@@ -22,8 +22,11 @@ public class PetController {
         petDTO.setName(pet.getName());
         petDTO.setBirthDate(pet.getBirthDate());
         petDTO.setNotes(pet.getNotes());
-        petDTO.setOwnerId(pet.getCustomer().getId());
         petDTO.setType(pet.getType());
+        if (pet.getCustomer() != null) {
+            petDTO.setOwnerId(pet.getCustomer().getId());
+        }
+
         return petDTO;
     }
 
